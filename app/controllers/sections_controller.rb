@@ -1,6 +1,6 @@
 class SectionsController < ApplicationController
 
-  layout false
+  layout "admin"
 
   def index
     @sections = Section.sorted
@@ -12,6 +12,7 @@ class SectionsController < ApplicationController
 
   def new
     @section = Section.new
+    @section_count = Section.count + 1
     @pages = Page.all
   end
 
@@ -28,6 +29,7 @@ class SectionsController < ApplicationController
   def edit
     @section = Section.find(params[:id])
     @pages = Page.all
+    @section_count = Section.count + 1
   end
 
   def update
@@ -36,6 +38,7 @@ class SectionsController < ApplicationController
       flash[:notice] = 'Section was updated successufully.'
       redirect_to(:action => 'show', :id => @section.id)
     else
+      @section_counr = Section.count + 1
       render('edit')
     end
   end

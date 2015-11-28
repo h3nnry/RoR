@@ -1,6 +1,6 @@
 class DemoController < ApplicationController
 
-  layout false
+  layout 'application'
 
   def index
     @array = ['Jora', 'Borea', 'Kolea']
@@ -15,4 +15,21 @@ class DemoController < ApplicationController
   def other_hello
     redirect_to(:controller=>'demo', ':action'=>'index')
   end
+
+  def text_helpers
+    
+  end
+
+  def number_helpers
+    
+  end
+
+  def date_helpers
+    
+  end
+
+  def escape_string
+
+  end
+
 end

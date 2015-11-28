@@ -24,3 +24,7 @@
 
 <br />
 <%= link_to("With params link", {:controller => 'demo', :action => 'other_hello', :page => 25, :id =>7})%>
+<% name = "John" %>
+<% new_name = "Sorry!');alert('I hacked you!" %>
+<%= link_to('Roar', '#', :onclick => "jsRoar('#{j(new_name)}'); return true") %>
+<%= javascript_tag("jsRoar('#{j(name)}');")%>

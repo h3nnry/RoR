@@ -1,6 +1,6 @@
 class SubjectsController < ApplicationController
 
-  layout false
+  layout "admin"
 
   def index
     @subjects = Subject.sorted
@@ -12,6 +12,7 @@ class SubjectsController < ApplicationController
 
   def new
     @subject = Subject.new
+    @subject_count = Subject.count + 1
   end
 
   def create
@@ -26,6 +27,7 @@ class SubjectsController < ApplicationController
 
   def edit
     @subject = Subject.find(params[:id])
+    @subject_count = Subject.count + 1
   end
 
   def update
@@ -34,6 +36,7 @@ class SubjectsController < ApplicationController
       flash[:notice] = 'Subject was updated successufully.'
       redirect_to(:action => 'show', :id => @subject.id)
     else
+      @subject_count = Subject.count +1
       render('edit')
     end
   end

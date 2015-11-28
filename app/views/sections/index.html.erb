@@ -1,13 +1,8 @@
-<% if !flash[:notice].blank? %>
-    <div  class="notice">
-      <%= flash[:notice] %>
-    </div>
-<% end%>
 <div class="sections index">
   <h2>Sections</h2>
 
   <%= link_to("Add New Section", {:action => 'new'}, :class => 'action new') %>
-
+  <div><%= pluralize(@sections.size, 'subject')  %> found</div>
   <table class="listing" summary="Page list">
     <tr class="header">
       <th>Section</th>
@@ -20,7 +15,7 @@
       <th>Actions</th>
     </tr>
     <% @sections.each do |section| %>
-        <tr>
+        <tr class="<%= cycle('odd', 'even') %>">
           <td><%= section.id %></td>
           <td><%= section.name %></td>
           <td><%= section.page.name %></td>
