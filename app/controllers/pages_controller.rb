@@ -2,6 +2,8 @@ class PagesController < ApplicationController
 
   layout "admin"
 
+  before_action :confirm_logged_in
+
   def index
     @pages = Page.sorted
     # @pages = Page.find(:all, :include => :subject, :order => "created_at DESC")

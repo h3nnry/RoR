@@ -1,39 +1,10 @@
 Rails.application.routes.draw do
 
-  get 'sections/index'
-
-  get 'sections/show'
-
-  get 'sections/new'
-
-  get 'sections/create'
-
-  get 'sections/edit'
-
-  get 'sections/update'
-
-  get 'sections/delete'
-
-  get 'sections/destroy'
-
-  get 'pages/index'
-
-  get 'pages/show'
-
-  get 'pages/new'
-
-  get 'pages/create'
-
-  get 'pages/edit'
-
-  get 'pages/delete'
-
-  get 'pages/destroy'
-
   match ':controller(/:action(/:id))', :via => [:get, :post]
 
   root 'demo#index'
-  # get 'demo/index'
+
+  get 'admin', :to => 'access#index'
   get 'demo/hello'
   get 'demo/other_hello'
   match 'demo/cool',
