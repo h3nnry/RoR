@@ -2,13 +2,14 @@ Rails.application.routes.draw do
 
   match ':controller(/:action(/:id))', :via => [:get, :post]
 
-  root 'demo#index'
+  root 'public#index'
 
+  get 'show/:permalink', :to => 'public#show'
   get 'admin', :to => 'access#index'
   get 'demo/hello'
   get 'demo/other_hello'
   match 'demo/cool',
-      :to => 'demo#index',
+      :to => 'public#index',
       :via => :get
 
   # The priority is based upon order of creation: first created -> highest priority.
