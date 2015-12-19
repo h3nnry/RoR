@@ -42,14 +42,15 @@ class AdminUsersController < ApplicationController
 
   def destroy
     AdminUser.find(params[:id]).destroy
-    flash[:notice] = 'Admin user was deleted.'
+    flash[:notice] = "Admin user destroyed."
     redirect_to(:action => 'index')
   end
 
   private
 
   def admin_user_params
-    params.require(:admin_user).permit(:first_name, :last_name, :email, :username, :password)
+    params.require(:admin_user).permit(:first_name, :last_name,
+      :email, :username, :password)
   end
 
 end

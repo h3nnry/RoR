@@ -1,27 +1,16 @@
 class AdminUser < ActiveRecord::Base
 
-  #To configure different table name
-  #self.table_name = "admin_users"
+  # To configure a different table name:
+  # self.table_name = "admin_users"
 
   has_secure_password
-
-  #short way
-  attr_accessor :first_name
-
-  #long way
-  # def last_nam
-  #   @last_name
-  # end
-  # def last_name=(value)
-  #   @last_name = value
-  # end
 
   has_and_belongs_to_many :pages
   has_many :section_edits
   has_many :sections, :through => :section_edits
 
   EMAIL_REGEX = /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}\Z/i
-  FORBIDDEN_USERNAMES = ['littlebopeep', 'humptydumpty', 'marymary']
+  FORBIDDEN_USERNAMES = ['littlebopeep','humptydumpty','marymary']
 
   # validates_presence_of :first_name
   # validates_length_of :first_name, :maximum => 25
@@ -37,20 +26,28 @@ class AdminUser < ActiveRecord::Base
 
   # shortcut validations, aka "sexy validations"
   validates :first_name, :presence => true,
-            :length => { :maximum => 25 }
+                         :length => { :maximum => 25 }
   validates :last_name, :presence => true,
-            :length => { :maximum => 50 }
-  validates :username, :length => { :within => 4..25 },
-            :uniqueness => true
+                        :length => { :maximum => 50 }
+  validates :username, :length => { :within => 8..25 },
+                       :uniqueness => true
   validates :email, :presence => true,
-            :length => { :maximum => 100 },
-            :format => EMAIL_REGEX,
-            :confirmation => true
+                    :length => { :maximum => 100 },
+                    :format => EMAIL_REGEX,
+                    :confirmation => true
 
   validate :username_is_allowed
-  validate :no_new_users_on_saturday, :on => :create
+  #validate :no_new_users_on_saturday, :on => :create
 
-  scope :sorted, lambda { order("last_name ASC, first_name ASC")}
+  scope :sorted, lambda { order("last_name ASC, first_name ASC") }
+
+  def name
+    "#{first_name} #{last_name}"
+    # Or: first_name + ' ' + last_name
+    # Or: [first_name, last_name].join(' ')
+  end
+
+  private
 
   def username_is_allowed
     if FORBIDDEN_USERNAMES.include?(username)
@@ -58,17 +55,12 @@ class AdminUser < ActiveRecord::Base
     end
   end
 
+  # Errors not related to a specific attribute
+  # can be added to errors[:base]
   def no_new_users_on_saturday
     if Time.now.wday == 6
-      errors[:base] << "No new users on Saturdays!"
+      errors[:base] << "No new users on Saturdays."
     end
   end
-
-  def name
-    "#{first_name} #{last_name}"
-    # Or: first_name + ' ' + last_name
-    #Or: [first_name, 'last_name'].join(' ')
-  end
-
 
 end

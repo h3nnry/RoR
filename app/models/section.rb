@@ -13,7 +13,7 @@ class Section < ActiveRecord::Base
   validates_presence_of :name
   validates_length_of :name, :maximum => 255
   validates_inclusion_of :content_type, :in => CONTENT_TYPES,
-                         :message => "must be one of: #{CONTENT_TYPES.join(', ')}"
+    :message => "must be one of: #{CONTENT_TYPES.join(', ')}"
   validates_presence_of :content
 
   scope :visible, lambda { where(:visible => true) }
@@ -23,8 +23,8 @@ class Section < ActiveRecord::Base
 
   private
 
-  def touch_page
-    page.touch
-  end
+    def touch_page
+      page.touch
+    end
 
 end

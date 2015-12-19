@@ -62,13 +62,13 @@ class SectionsController < ApplicationController
 
   private
 
-  def section_params
-    params.require(:section).permit(:page_id, :name, :position, :visible, :content_type, :content)
-  end
-
-  def find_page
-    if params[:page_id]
-      @page = Page.find(params[:page_id])
+    def section_params
+      params.require(:section).permit(:page_id, :name, :position, :visible, :content_type, :content)
     end
-  end
+
+    def find_page
+      if params[:page_id]
+        @page = Page.find(params[:page_id])
+      end
+    end
 end

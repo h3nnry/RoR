@@ -1,30 +1,15 @@
 <h1>Demo#index</h1>
-<p>Hello world from index!</p>
-<%=1+1%>
-<br />
+<p>Hello from index!</p>
 
-<% target = "Moldova"%>
-<%= "Trezeste-te #{target}"%>
+<a href="/demo/hello">Hello page 1</a><br />
+<%= link_to('Hello page 2', {:action => 'hello'}) %><br />
 
-<br />
-<% 3.times do %>
-     <%= "xxx" %>
-    <br />
-<% end %>
+<%= link_to('Hello with parameters', {:action => 'hello', :page => 5, :id => 20}) %>
 
 <br />
-<% @array.each do |n|%>
-    <%= n %>
-    <br />
-<% end %>
-<br />
-<%= link_to("Got o page 2", {:controller => 'demo', :action => 'hello'})%>
-<br />
-<a href="/demo/hello">Other link</a>
+<% name = "Kevin" %>
+<% name = "Sorry!'); alert('I hacked you!" %>
 
-<br />
-<%= link_to("With params link", {:controller => 'demo', :action => 'other_hello', :page => 25, :id =>7})%>
-<% name = "John" %>
-<% new_name = "Sorry!');alert('I hacked you!" %>
-<%= link_to('Roar', '#', :onclick => "jsRoar('#{j(new_name)}'); return true") %>
-<%= javascript_tag("jsRoar('#{j(name)}');")%>
+<%= link_to('Roar', '#', :onclick => "jsRoar('#{j(name)}'); return true;") %>
+
+<%= javascript_tag("jsRoar('#{j(name)}');") %>
